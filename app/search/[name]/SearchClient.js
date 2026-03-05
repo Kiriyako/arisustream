@@ -1,29 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import "./styles.css";
+import "../../styles.css";
 
-export default function Main() {
+export default function SearchClient({ name }) {
   const [anime, setAnime] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4444/api/top-ten")
+    fetch(`http://localhost:4444/api/search?keyword=${encodeURIComponent(name)}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) setAnime(data.results.today);
+        if (data.success) setAnime(data.results.data);
         setLoading(false);
       })
       .catch((err) => {
         console.error(err);
         setLoading(false);
       });
-  }, []);
+  }, [name]);
 
   return (
     <div className="container">
       <header className="site-header">
-        <span className="logo">arisu</span>
+        <Link href="/" className="logo">arisu</Link>
         <form
           className="search-bar"
           onSubmit={(e) => {
@@ -32,16 +32,18 @@ export default function Main() {
             if (q) window.location.href = `/search/${encodeURIComponent(q)}`;
           }}
         >
-          <input name="q" placeholder="Search anime..." autoComplete="off" />
+          <input name="q" defaultValue={name} placeholder="Search anime..." autoComplete="off" />
           <button type="submit">→</button>
         </form>
       </header>
 
       <section>
-        <h2 className="section-label">Trending Today</h2>
+        <h2 className="section-label">Results for "{name}"</h2>
 
         {loading ? (
           <div className="loader-wrap"><span className="loader" /></div>
+        ) : anime.length === 0 ? (
+          <p className="not-found">No results found.</p>
         ) : (
           <div className="grid">
             {anime.map((item) => (
