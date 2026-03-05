@@ -8,7 +8,7 @@ export default function Main() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4444/api/top-ten")
+    fetch("https://anime-api-ten-gilt.vercel.app/api/top-ten")
       .then((res) => res.json())
       .then((data) => {
         if (data.success) setAnime(data.results.today);

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import "./watch.css";
 
-const API = "http://localhost:4444/api";
+const API = "https://anime-api-ten-gilt.vercel.app/api";
 
 export default function WatchClient({ name }) {
   const searchParams = useSearchParams();

@@ -8,7 +8,7 @@ export default function SearchClient({ name }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:4444/api/search?keyword=${encodeURIComponent(name)}`)
+    fetch(`https://anime-api-ten-gilt.vercel.app/api/search?keyword=${encodeURIComponent(name)}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) setAnime(data.results.data);

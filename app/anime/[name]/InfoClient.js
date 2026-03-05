@@ -11,8 +11,8 @@ export default function InfoClient({ name }) {
 
   useEffect(() => {
     Promise.all([
-      fetch(`http://localhost:4444/api/info?id=${encodeURIComponent(name)}`).then((r) => r.json()),
-      fetch(`http://localhost:4444/api/episodes/${encodeURIComponent(name)}`).then((r) => r.json()),
+      fetch(`https://anime-api-ten-gilt.vercel.app/api/info?id=${encodeURIComponent(name)}`).then((r) => r.json()),
+      fetch(`https://anime-api-ten-gilt.vercel.app/api/episodes/${encodeURIComponent(name)}`).then((r) => r.json()),
     ])
       .then(([infoData, epData]) => {
         if (infoData.success) setInfo(infoData.results.data);
