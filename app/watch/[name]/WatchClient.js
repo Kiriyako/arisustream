@@ -64,8 +64,9 @@ export default function WatchClient({ name }) {
       .then((data) => {
         if (data.success && data.results.length > 0) {
           setServers(data.results);
-          const preferred = data.results.find((s) => s.type === activeType) || data.results[0];
-          setActiveServer(preferred);
+const filtered = data.results.filter((s) => s.serverName !== "HD-1");
+const pool = filtered.length > 0 ? filtered : data.results;
+const preferred = pool.find((s) => s.type === activeType) || pool[0];          setActiveServer(preferred);
           setActiveType(preferred.type);
         }
       })
