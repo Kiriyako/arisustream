@@ -1,0 +1,122 @@
+/* searchbar.css */
+
+.searchbar-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #0d1f35;
+  border: 1px solid rgba(94,184,255,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 200;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.7);
+  animation: dropdown-in 0.15s ease;
+}
+
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.suggestion-item:last-of-type {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: rgba(94,184,255,0.07);
+}
+
+.suggestion-poster {
+  width: 36px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.suggestion-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.suggestion-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-jp {
+  font-size: 0.68rem;
+  color: #445;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.suggestion-tag {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5eb8ff;
+  background: rgba(94,184,255,0.1);
+  border: 1px solid rgba(94,184,255,0.2);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.suggestion-date {
+  font-size: 0.65rem;
+  color: #445;
+}
+
+.suggestion-search-all {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(94,184,255,0.04);
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  color: #5eb8ff;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.suggestion-search-all:hover {
+  background: rgba(94,184,255,0.1);
+}

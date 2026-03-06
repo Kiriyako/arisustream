@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import "../../styles.css";
+import AnimeCard from "../../AnimeCard";
+import SearchBar from "../../SearchBar";
 
 export default function SearchClient({ name }) {
   const [anime, setAnime] = useState([]);
@@ -24,17 +26,7 @@ export default function SearchClient({ name }) {
     <div className="container">
       <header className="site-header">
         <Link href="/" className="logo">arisu</Link>
-        <form
-          className="search-bar"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const q = e.target.q.value.trim();
-            if (q) window.location.href = `/search/${encodeURIComponent(q)}`;
-          }}
-        >
-          <input name="q" defaultValue={name} placeholder="Search anime..." autoComplete="off" />
-          <button type="submit">→</button>
-        </form>
+        <SearchBar defaultValue={name} />
       </header>
 
       <section>
@@ -47,18 +39,7 @@ export default function SearchClient({ name }) {
         ) : (
           <div className="grid">
             {anime.map((item) => (
-              <Link key={item.id} href={`/anime/${item.id}`} className="card">
-                <div className="card-img-wrap">
-                  <img src={item.poster} alt={item.japanese_title} />
-                  {item.tvInfo && (
-                    <div className="card-badges">
-                      {item.tvInfo.showType && <span className="badge type">{item.tvInfo.showType}</span>}
-                      {item.tvInfo.sub && <span className="badge sub">SUB {item.tvInfo.sub}</span>}
-                    </div>
-                  )}
-                </div>
-                <h3>{item.japanese_title || item.title}</h3>
-              </Link>
+              <AnimeCard key={item.id} item={item} />
             ))}
           </div>
         )}

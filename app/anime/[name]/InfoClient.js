@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import "./info.css";
+import SearchBar from "../../SearchBar";
 
 export default function InfoClient({ name }) {
   const [info, setInfo] = useState(null);
@@ -42,17 +43,7 @@ export default function InfoClient({ name }) {
 
       <header className="site-header">
         <Link href="/" className="logo">arisu</Link>
-        <form
-          className="search-bar"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const q = e.target.q.value.trim();
-            if (q) window.location.href = `/search/${encodeURIComponent(q)}`;
-          }}
-        >
-          <input name="q" placeholder="Search anime..." autoComplete="off" />
-          <button type="submit">→</button>
-        </form>
+        <SearchBar />
       </header>
 
       <div className="info-layout">

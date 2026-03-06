@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import "./watch.css";
+import SearchBar from "../../SearchBar";
 
 const API = "https://anime-api-ten-gilt.vercel.app/api";
 
@@ -132,7 +133,7 @@ const preferred = pool.find((s) => s.type === activeType) || pool[0];          s
           hls({ forceHLS: true }),
           ui({
             subtitle: tracks.length > 0 ? { source: tracks } : undefined,
-            theme: { primaryColor: "#e5a0ff" },
+theme: { primaryColor: "#5eb8ff" },
             pictureInPicture: true,
             screenshot: false,
           }),
@@ -181,20 +182,10 @@ const preferred = pool.find((s) => s.type === activeType) || pool[0];          s
   return (
     <div className="watch-root">
       {/* Header */}
-      <header className="site-header">
-        <Link href="/" className="logo">arisu</Link>
-        <form
-          className="search-bar"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const q = e.target.q.value.trim();
-            if (q) window.location.href = `/search/${encodeURIComponent(q)}`;
-          }}
-        >
-          <input name="q" placeholder="Search anime..." autoComplete="off" />
-          <button type="submit">→</button>
-        </form>
-      </header>
+     <header className="site-header">
+  <span className="logo">arisu</span>
+  <SearchBar />
+</header>
 
       <div className="watch-layout">
         {/* LEFT: player + controls */}
